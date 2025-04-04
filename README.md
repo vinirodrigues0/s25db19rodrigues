@@ -1,6 +1,6 @@
-# s25wb19rodrigues
-This is an Express server for Web Apps Lab/Assignment 10 <br>
-The server is deployed on Render: <https://s25wb19rodrigues.onrender.com>
+# s25db19rodrigues
+This is an Express server for Web Apps Lab/Assignment 11. The server is connected to a MongoDB database using Mongoose. <br>
+The server is deployed on Render: <https://s25db19rodrigues.onrender.com>
 
 ## Class: Tournaments
 
