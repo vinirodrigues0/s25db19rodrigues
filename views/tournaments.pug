@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  h1= title
+  -
+    let results = [
+      {name: "World Cup", year: 2014, location: "Brazil"},
+      {name: "Summer Olympics", year: 1948, location: "London"},
+      {name: "Super Bowl XXXVI", year: 2002, location: "New Orleans"},
+      {name: "UEFA Champions League Final", year: 2017, location: "Wales"},
+      {name: "NBA Finals", year: 2020, location: "Orlando"},
+      {name: "Winter Olympics", year: 2006, location: "Turin"},
+      {name: "The Masters Tournament", year: 2024, location: "Augusta"},
+      {name: "Cricket World Cup", year: 2007, location: "West Indies"}
+    ]
+
+  div.container-fluid
+    div.row 
+      each tournament, index in results
+        div.col-sm-2
+          h4 #{tournament.name}
+          p Year: #{tournament.year}
+          p Location: #{tournament.location}
+          button(onclick=`buy(${index})`) Buy
+
+  script.
+    function buy(index) {
+      alert(`You purchased item ${index}`);
+    }

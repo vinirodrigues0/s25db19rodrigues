@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to the Express Server for Web Apps Lab/Assignment 10!
+  button(type="button", class="btn btn-secondary", onclick="faster()") Sample Button
+  div#faster add in extra
+  a(href='/tournaments') Go to Search Results: Tournaments
+
+  script.
+    let value = 1;
+    let amt = 2;
+    function faster() {
+      amt *= 2;
+      value += amt;
+      document.getElementById("faster").innerHTML = `Faster ${value} times ${amt}`;
+    }

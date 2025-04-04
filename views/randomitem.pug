@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h1= title
+
+  - var image_names = ['RolandGarros.jpg', 'SummerOlympics.jpg', 'SuperBowl.jpg', 'TourDeFrance.jpg', 'WorldCup.jpg']
+  - for (let i = 0; i < 3; i++) {
+      - var random_index = Math.floor(Math.random() * 5)
+      img(
+        src=`/images/${image_names[random_index]}`,
+        alt=`Random Image ${i + 1}`,
+        height=`400`,
+        width=`400`
+      )
+  - }
