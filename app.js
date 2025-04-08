@@ -51,6 +51,7 @@ var indexRouter = require('./routes/index');
 var pickRouter = require('./routes/pick');
 var tournamentsRouter = require('./routes/tournaments');
 var usersRouter = require('./routes/users');
+var resourceRouter = require('./routes/resource');
 
 var app = express();
 
@@ -69,6 +70,7 @@ app.use('/grid', gridRouter);
 app.use('/selector', pickRouter);
 app.use('/tournaments', tournamentsRouter);
 app.use('/users', usersRouter);
+app.use('/resource', resourceRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
