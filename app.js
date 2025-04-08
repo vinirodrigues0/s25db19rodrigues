@@ -4,6 +4,48 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+var Tournament = require("./models/tournament");
+
+require('dotenv').config();
+const connectionString = process.env.MONGO_CON;
+mongoose = require('mongoose');
+mongoose.connect(connectionString);
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.once("open", function(){
+  console.log("Connection to DB succeeded")});
+
+async function recreateDB() {
+  await Tournament.deleteMany();
+
+  let results = [
+    { name: "World Cup", year: 2014, location: "Brazil" },
+    { name: "Summer Olympics", year: 1948, location: "London" },
+    { name: "Super Bowl XXXVI", year: 2002, location: "New Orleans" },
+    { name: "UEFA Champions League Final", year: 2017, location: "Wales" },
+    { name: "NBA Finals", year: 2020, location: "Orlando" },
+    { name: "Winter Olympics", year: 2006, location: "Turin" },
+    { name: "The Masters Tournament", year: 2024, location: "Augusta" },
+    { name: "Cricket World Cup", year: 2007, location: "West Indies" },
+    { name: "Copa America", year: 2019, location: "Brazil" },
+    { name: "FIFA World Cup", year: 2018, location: "Russia" }
+  ];
+
+  results.forEach(tournamentData => {
+    let tournamentInstance = new Tournament(tournamentData);
+    tournamentInstance.save().then(doc=>{
+      console.log(`${doc.name} tournament saved`);
+    })
+    .catch(err=>{
+      console.error(err);
+    });
+  });
+}
+
+let reseed = true;
+if (reseed) {recreateDB();};
+
 var gridRouter = require('./routes/grid');
 var indexRouter = require('./routes/index');
 var pickRouter = require('./routes/pick');
