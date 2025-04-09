@@ -1,7 +1,14 @@
 var Tournament = require('../models/tournament');
 
-exports.tournament_list = function(req, res) {
-    res.send('NOT IMPLEMENTED: Tournament list');
+exports.tournament_list = async function(req, res) {
+    try {
+        const theTournaments = await Tournament.find();
+        res.send(theTournaments);
+    }
+    catch(err) {
+        res.status(500);
+        res.send(`{"error":${err}}`);
+    }
 };
 
 exports.tournament_detail = function(req, res) {
