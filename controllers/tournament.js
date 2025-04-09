@@ -26,3 +26,14 @@ exports.tournament_delete = function(req, res) {
 exports.tournament_update_put = function(req, res) {
     res.send('NOT IMPLEMENTED: Tournament update PUT' + req.params.id);
 };
+
+exports.tournament_view_all_Page = async function(req, res) {
+    try {
+        const theTournaments = await Tournament.find();
+        res.render('tournaments', {title: 'Tournament Search Results', results: theTournaments});
+    }
+    catch(err) {
+        res.status(500);
+        res.send(`{"error":${err}}`);
+    }
+}

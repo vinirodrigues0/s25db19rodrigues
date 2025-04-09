@@ -1,9 +1,8 @@
 var express = require('express');
+const tournament_controller = require('../controllers/tournament');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('tournaments', { title: 'Search Results: Tournaments' });
-});
+/* GET tournaments */
+router.get('/', tournament_controller.tournament_view_all_Page);
 
 module.exports = router;
