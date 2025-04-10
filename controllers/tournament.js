@@ -45,8 +45,21 @@ exports.tournament_delete = function(req, res) {
     res.send('NOT IMPLEMENTED: Tournament delete DELETE '+ req.params.id);
 };
 
-exports.tournament_update_put = function(req, res) {
-    res.send('NOT IMPLEMENTED: Tournament update PUT' + req.params.id);
+exports.tournament_update_put = async function(req, res) {
+    console.log(`update on id ${req.params.id} with body ${JSON.stringify(req.body)}`);
+    try {
+        let toUpdate = await Tournament.findById(req.params.id);
+        if (req.body.name) toUpdate.name = req.body.name;
+        if (req.body.year) toUpdate.year = req.body.year;
+        if (req.body.location) toUpdate.location = req.body.location;
+        let result = await toUpdate.save();
+        console.log("Success " + result);
+        res.send(result);
+    }
+    catch (err) {
+        res.status(500);
+        res.send(`{"error": ${err}: Update for id ${req.params.id} failed}`);
+    }
 };
 
 exports.tournament_view_all_Page = async function(req, res) {
