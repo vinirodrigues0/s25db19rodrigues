@@ -3,6 +3,9 @@ extends layout
 block content
   h1= title
 
+  div.text-right
+    button.btn.btn-success(style="float: right") Add tournament
+
   div.container-fluid
     div.row 
       each tournament, index in results
@@ -10,7 +13,12 @@ block content
           h4 #{tournament.name}
           p Year: #{tournament.year}
           p Location: #{tournament.location}
-          button(onclick=`buy(${index})`) Buy
+
+          div.text-center
+            button.btn.btn-info Inspect
+            button.btn.btn-warning Update
+            button.btn.btn-danger Delete
+            button(onclick=`buy(${index})`) Buy
 
   script.
     function buy(index) {
