@@ -15,8 +15,22 @@ exports.tournament_detail = function(req, res) {
     res.send('NOT IMPLEMENTED: Tournament detail: ' + req.params.id);
 };
 
-exports.tournament_create_post = function(req, res) {
-    res.send('NOT IMPLEMENTED: Tournament create POST');
+exports.tournament_create_post = async function(req, res) {
+    console.log(req.body);
+    let document = new Tournament();
+
+    document.name = req.body.name;
+    document.year = req.body.year;
+    document.location = req.body.location;
+
+    try {
+        let result = await document.save();
+        res.send(result);
+    }
+    catch(err) {
+        res.status(500);
+        res.send(`{"error":${err}}`);
+    }
 };
 
 exports.tournament_delete = function(req, res) {
