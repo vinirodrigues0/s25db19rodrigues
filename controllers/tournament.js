@@ -11,8 +11,16 @@ exports.tournament_list = async function(req, res) {
     }
 };
 
-exports.tournament_detail = function(req, res) {
-    res.send('NOT IMPLEMENTED: Tournament detail: ' + req.params.id);
+exports.tournament_detail = async function(req, res) {
+    console.log("detail" + req.params.id);
+    try {
+        const result = await Tournament.findById(req.params.id);
+        res.send(result);
+    }
+    catch (err) {
+        res.status(500);
+        res.send(`{"error": document for id ${req.params.id} not found}`);
+    }
 };
 
 exports.tournament_create_post = async function(req, res) {
