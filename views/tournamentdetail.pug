@@ -1,0 +1,23 @@
+extends layout
+
+block content
+    h1= title
+
+    - let tournamentId = toShow._id
+    - let tournamentName = toShow.name
+    - let tournamentYear = toShow.year 
+    - let tournamentLocation = toShow.location
+
+    div
+        div.row
+            div(class='tournamentAttr mr-3') Tournament ID is:
+            div #{tournamentId}
+        div.row 
+            div(class='tournamentAttr mr-3') Tournament Name is:
+            div #{tournamentName}
+        div.row 
+            div(class='tournamentAttr mr-3') Tournament Year is:
+            div #{tournamentYear}
+        div.row 
+            div(class='tournamentAttr mr-3') Tournament Location is: 
+            div #{tournamentLocation}

@@ -81,3 +81,15 @@ exports.tournament_view_all_Page = async function(req, res) {
         res.send(`{"error":${err}}`);
     }
 }
+
+exports.tournament_view_one_Page = async function(req, res) {
+    console.log("single view for id" + req.query.id);
+    try {
+        const result = await Tournament.findById(req.query.id);
+        res.render('tournamentdetail', { title: 'Tournament Detail', toShow: result });
+    }
+    catch(err) {
+        res.status(500);
+        res.send(`{'error': '${err}'}`);
+    }
+}
