@@ -3,28 +3,31 @@ extends layout
 block content
     h1= title 
 
-    - let tournamentId = toShow._id
-    - let tournamentName = toShow.name
-    - let tournamentYear = toShow.year 
-    - let tournamentLocation = toShow.location
+    if (toShow == null)
+        h2 No instance to update
+    else
+        - let tournamentId = toShow._id
+        - let tournamentName = toShow.name
+        - let tournamentYear = toShow.year 
+        - let tournamentLocation = toShow.location
 
-    div.row(class='mb-2')
-        div.mr-1 ID is
-        div #{tournamentId}
+        div.row(class='mb-2')
+            div.mr-1 ID is
+            div #{tournamentId}
 
-    - let actionid = "/resource/tournaments/" + tournamentId
+        - let actionid = "/resource/tournaments/" + tournamentId
 
-    form(id='TournamentForm', action=actionid, method="PUT")
-        div.form-group 
-            label.tournamentAttr(for='name') Tournament Name
-            input#tournament_name(type='text', name='name', value=tournamentName)
-        div.form-group 
-            label.tournamentAttr(for='year') Tournament Year 
-            input#tournament_year(type='number', name='year', value=tournamentYear)
-        div.form-group 
-            label.tournamentAttr(for='location') Tournament Location 
-            input#tournament_location(type='text', name='location', value=tournamentLocation)
-        input(type='submit')
+        form(id='TournamentForm', action=actionid, method="PUT")
+            div.form-group 
+                label.tournamentAttr(for='name') Tournament Name
+                input#tournament_name(type='text', name='name', value=tournamentName)
+            div.form-group 
+                label.tournamentAttr(for='year') Tournament Year 
+                input#tournament_year(type='number', name='year', value=tournamentYear)
+            div.form-group 
+                label.tournamentAttr(for='location') Tournament Location 
+                input#tournament_location(type='text', name='location', value=tournamentLocation)
+            input(type='submit')
 
     script. 
         document.forms['TournamentForm'].addEventListener('submit', (event) => {
