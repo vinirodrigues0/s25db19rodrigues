@@ -1,0 +1,51 @@
+extends layout 
+
+block content 
+    h1= title 
+
+    if (toShow == null)
+        h2 No instance to delete
+    else
+        - let tournamentId = toShow._id
+        - let tournamentName = toShow.name
+        - let tournamentYear = toShow.year 
+        - let tournamentLocation = toShow.location 
+        - let actionid = "/resource/tournaments/" + tournamentId
+
+        script let actionid = "#{actionid}"
+
+        div
+            div.row
+                div(class='tournamentAttr mr-3') Tournament ID is:
+                div #{tournamentId}
+            div.row 
+                div(class='tournamentAttr mr-3') Tournament Name is:
+                div #{tournamentName}
+            div.row 
+                div(class='tournamentAttr mr-3') Tournament Year is:
+                div #{tournamentYear}
+            div.row 
+                div(class='tournamentAttr mr-3') Tournament Location is: 
+                div #{tournamentLocation}
+
+        button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
+        button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
+
+    script.
+        function cancel() {
+            window.location.href='/tournaments'
+        }
+
+        function deleteOnid() {
+            console.log("starting delete")
+            fetch(actionid, {
+                method: 'DELETE'
+            }).then((resp) => {
+                return resp.json();
+            }).then((body) => {
+                alert("Delete succeded")
+                window.location.href='/tournaments'
+            }).catch((error) => {
+                alert("Delete failed " + error)
+            });
+        }

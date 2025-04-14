@@ -116,3 +116,15 @@ exports.tournament_update_Page = async function(req, res) {
         res.send(`{'error': '${err}'}`);
     }
 }
+
+exports.tournament_delete_Page = async function(req, res) {
+    console.log("Delete view for id " + req.query.id);
+    try {
+        const result = await Tournament.findById(req.query.id);
+        res.render('tournamentdelete', { title: 'Tournament Delete', toShow: result });
+    }
+    catch(err) {
+        res.status(500);
+        res.send(`{'error': '${err}'}`);
+    }
+}
