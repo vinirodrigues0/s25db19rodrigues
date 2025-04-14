@@ -4,7 +4,7 @@ block content
   h1= title
 
   div.text-right
-    button.btn.btn-success(style="float: right") Add tournament
+    button.btn.btn-success(style="float: right", onclick=`window.location.href='/tournaments/create'`) Add tournament
 
   div.container-fluid
     div.row 
@@ -15,9 +15,9 @@ block content
           p Location: #{tournament.location}
 
           div.text-center
-            button.btn.btn-info Inspect
-            button.btn.btn-warning Update
-            button.btn.btn-danger Delete
+            button.btn.btn-info(onclick=`window.location.href='/tournaments/detail?id=${tournament._id}'`) Inspect
+            button.btn.btn-warning(onclick=`window.location.href='/tournaments/update?id=${tournament._id}'`) Update
+            button.btn.btn-danger(onclick=`window.location.href='/tournaments/delete?id=${tournament._id}'`) Delete
             button(onclick=`buy(${index})`) Buy
 
   script.
