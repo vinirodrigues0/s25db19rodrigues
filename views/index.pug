@@ -1,17 +1,12 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to the Express Server for Web Apps Lab/Assignment 10!
-  button(type="button", class="btn btn-secondary", onclick="faster()") Sample Button
-  div#faster add in extra
-  a(href='/tournaments') Go to Search Results: Tournaments
-
-  script.
-    let value = 1;
-    let amt = 2;
-    function faster() {
-      amt *= 2;
-      value += amt;
-      document.getElementById("faster").innerHTML = `Faster ${value} times ${amt}`;
-    }
+  if(!user)
+    a(href="/login") Login 
+    br
+    a(href="/register") Register
+  if(user)
+    p You are currently logged in as #{user.username}
+    a(href="/tournaments") Take me to tournaments
+    br
+    a(href="/logout") Logout
